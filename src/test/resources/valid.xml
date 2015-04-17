@@ -1,0 +1,16 @@
+<!DOCTYPE test>
+<test>
+	<string>TEST</string>
+	<emptyString></emptyString>
+	<integer>111</integer>
+	<long>222</long>
+	<double>12.1</double>
+	<boolean>true</boolean>
+	<date>2014-02-08</date>
+	<dateTime>2015-02-08 03:11:57</dateTime>
+	<nodes>
+		<node>TEST1</node>
+		<node>TEST</node>
+	</nodes>
+	<emptyNodes></emptyNodes>
+</test>

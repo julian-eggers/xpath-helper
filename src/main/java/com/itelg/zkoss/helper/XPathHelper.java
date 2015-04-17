@@ -23,7 +23,7 @@ public class XPathHelper
 	{
 		Nodes nodes = getNodeList(xpath, node);
 
-		if (nodes.size() != 0)
+		if (hasNodes(nodes))
 		{
 			return nodes.get(0);
 		}
