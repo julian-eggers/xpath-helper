@@ -11,9 +11,9 @@
 	</properties>
 
 	<scm>
-		<url>https://github.com/julian-eggers/zkoss-helper</url>
-		<connection>scm:git:https://github.com/julian-eggers/zkoss-helper.git</connection>
-		<developerConnection>scm:git:https://github.com/julian-eggers/zkoss-helper.git</developerConnection>
+		<url>https://github.com/julian-eggers/xpath-helper</url>
+		<connection>scm:git:https://github.com/julian-eggers/xpath-helper.git</connection>
+		<developerConnection>scm:git:https://github.com/julian-eggers/xpath-helper.git</developerConnection>
 	</scm>
 
 	<developers>
