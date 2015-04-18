@@ -14,14 +14,7 @@ public class DateHelper
 	
 	public static Date toDate(String date, String format)
 	{
-		DateTime dateTime = toDateTime(date, format);
-
-		if (dateTime != null)
-		{
-			return dateTime.toDate();
-		}
-
-		return null;
+		return toDateTime(date, format).toDate();
 	}
 
 	public static DateTime toDateTime(String date, String format)

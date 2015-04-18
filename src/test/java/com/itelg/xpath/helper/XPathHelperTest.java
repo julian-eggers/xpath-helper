@@ -32,6 +32,7 @@ public class XPathHelperTest
 		Element rootElement = XmlLoader.loadElement("valid.xml");
 		Assert.assertTrue(XPathHelper.hasNodes(XPathHelper.getNodeList("nodes/node", rootElement)));
 		Assert.assertFalse(XPathHelper.hasNodes(XPathHelper.getNodeList("emptyNodes/node", rootElement)));
+		Assert.assertFalse(XPathHelper.hasNodes(null));
 	}
 	
 	@Test
@@ -48,6 +49,7 @@ public class XPathHelperTest
 		Element rootElement = XmlLoader.loadElement("valid.xml");
 		Assert.assertEquals("TEST", XPathHelper.getString("string", rootElement));
 		Assert.assertEquals("", XPathHelper.getString("emptyString", rootElement));
+		Assert.assertNull(XPathHelper.getString("missingString", rootElement));
 	}
 	
 	@Test

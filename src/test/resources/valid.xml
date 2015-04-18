@@ -8,6 +8,7 @@
 	<boolean>true</boolean>
 	<date>2014-02-08</date>
 	<dateTime>2015-02-08 03:11:57</dateTime>
+	<dateTimeZone>2015-04-11 22:41:03.0 UTC</dateTimeZone>
 	<nodes>
 		<node>TEST1</node>
 		<node>TEST</node>
