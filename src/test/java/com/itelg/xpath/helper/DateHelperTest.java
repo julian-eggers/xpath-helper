@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.itelg.zkoss.helper.DateHelper;
+import com.itelg.xpath.helper.DateHelper;
 
 public class DateHelperTest
 {

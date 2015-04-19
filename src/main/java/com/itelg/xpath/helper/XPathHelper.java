@@ -1,4 +1,4 @@
-package com.itelg.zkoss.helper;
+package com.itelg.xpath.helper;
 
 import java.util.Date;
 

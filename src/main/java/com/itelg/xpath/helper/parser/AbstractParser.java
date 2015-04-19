@@ -1,15 +1,14 @@
-package com.itelg.zkoss.helper.parser;
+package com.itelg.xpath.helper.parser;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import nu.xom.Builder;
-import nu.xom.Document;
 import nu.xom.Element;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.itelg.xpath.helper.DocumentHelper;
 
 public abstract class AbstractParser<T> implements Parser<T>
 {
@@ -20,17 +19,27 @@ public abstract class AbstractParser<T> implements Parser<T>
 	{
 		try
 		{
-			InputStream inputStream = new ByteArrayInputStream(xml.getBytes());
-			Document document = new Builder().build(inputStream);
-			Element rootElement = document.getRootElement();
-			T object = doParse(rootElement);
-			IOUtils.closeQuietly(inputStream);
-
-			return object;
+			Element rootElement = DocumentHelper.getRootElement(xml);
+			return doParse(rootElement);
 		}
 		catch (Exception e)
 		{
 			log.warn(xml, e);
+			throw e;
+		}
+	}
+	
+	@Override
+	public T parse(InputStream xml) throws Exception
+	{
+		try
+		{
+			Element rootElement = DocumentHelper.getRootElement(xml);
+			return doParse(rootElement);
+		}
+		catch (Exception e)
+		{
+			log.warn(IOUtils.toString(xml), e);
 			throw e;
 		}
 	}
