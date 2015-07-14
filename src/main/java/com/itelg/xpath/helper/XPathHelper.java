@@ -1,5 +1,8 @@
 package com.itelg.xpath.helper;
 
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import nu.xom.Node;
@@ -139,6 +142,30 @@ public class XPathHelper
 		if (StringUtils.isNotBlank(value))
 		{
 			return DateHelper.toDateTime(value, format);
+		}
+
+		return null;
+	}
+	
+	public static ZonedDateTime getZonedDateTime(String xpath, DateTimeFormatter formatter, Node node) throws Exception
+	{
+		String value = getString(xpath, node);
+
+		if (StringUtils.isNotBlank(value))
+		{
+			return DateHelper.toZonedDateTime(value, formatter);
+		}
+
+		return null;
+	}
+	
+	public static LocalDateTime getLocalDateTime(String xpath, DateTimeFormatter formatter, Node node) throws Exception
+	{
+		String value = getString(xpath, node);
+
+		if (StringUtils.isNotBlank(value))
+		{
+			return DateHelper.toLocalDateTime(value, formatter);
 		}
 
 		return null;

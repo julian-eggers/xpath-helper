@@ -24,6 +24,12 @@
 	<dateNotConvertable>TEST</dateNotConvertable>
 	<dateTime>2014-02-08 03:11:57</dateTime>
 	<dateTimeZone>2014-04-08 03:11:57.2 UTC</dateTimeZone>
+	<zonedDateTime>2015-07-08T12:21:30.667+02:00</zonedDateTime>
+	<zonedDateTimeEmpty></zonedDateTimeEmpty>
+	<zonedDateTimeNotConvertable>TEST</zonedDateTimeNotConvertable>
+	<localDateTime>2015-07-08T12:21:30.667+02:00</localDateTime>
+	<localDateTimeEmpty></localDateTimeEmpty>
+	<localDateTimeNotConvertable>TEST</localDateTimeNotConvertable>
 	<enum>VALUE1</enum>
 	<enumNotConvertable>TEST</enumNotConvertable>
 	<enumEmpty></enumEmpty>

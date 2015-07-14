@@ -1,5 +1,10 @@
 package com.itelg.xpath.helper;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 import nu.xom.Element;
 
 import org.joda.time.DateTime;
@@ -7,8 +12,6 @@ import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.itelg.xpath.helper.DocumentHelper;
-import com.itelg.xpath.helper.XPathHelper;
 import com.itelg.xpath.helper.test.support.XmlLoader;
 
 public class XPathHelperTest
@@ -163,6 +166,38 @@ public class XPathHelperTest
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
 		XPathHelper.getDateTime("dateNotConvertable", "yyyy-MM-dd", rootElement);
+	}
+	
+	@Test
+	public void testGetZonedDateTime() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		Assert.assertEquals(ZonedDateTime.of(2015, 7, 8, 12, 21, 30, 0, ZoneId.of("+02:00")), XPathHelper.getZonedDateTime("zonedDateTime", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement).withNano(0));
+		Assert.assertNull(XPathHelper.getZonedDateTime("zonedDateTimeEmpty", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement));
+		Assert.assertNull(XPathHelper.getZonedDateTime("zonedDateTimeMissing", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetZonedDateTimeNotConvertable() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		XPathHelper.getZonedDateTime("zonedDateTimeNotConvertable", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement);
+	}
+	
+	@Test
+	public void testGetLocalDateTime() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		Assert.assertEquals(LocalDateTime.of(2015, 7, 8, 12, 21, 30, 0), XPathHelper.getLocalDateTime("localDateTime", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement).withNano(0));
+		Assert.assertNull(XPathHelper.getLocalDateTime("localDateTimeEmpty", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement));
+		Assert.assertNull(XPathHelper.getLocalDateTime("localDateTimeMissing", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetLocalDateTimeNotConvertable() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		XPathHelper.getLocalDateTime("localDateTimeNotConvertable", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement);
 	}
 	
 	@Test

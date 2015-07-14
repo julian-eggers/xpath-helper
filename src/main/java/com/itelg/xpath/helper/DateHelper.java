@@ -1,32 +1,57 @@
 package com.itelg.xpath.helper;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 public class DateHelper
 {
-	private static final Map<String, DateTimeFormatter> dateTimeFormatters = new ConcurrentHashMap<>();
-	
+	/**
+	 * START {@link java.util.Date}
+	 */
 	public static Date toDate(String date, String format)
 	{
 		return toDateTime(date, format).toDate();
 	}
 
+	/**
+	 * START {@link org.joda.time.DateTime}
+	 */
 	public static DateTime toDateTime(String date, String format)
 	{
-		DateTimeFormatter dateTimeFormatter = dateTimeFormatters.get(format);
-		
-		if (dateTimeFormatter == null)
+		return DateTimeFormat.forPattern(format).parseDateTime(date);
+	}
+
+	/**
+	 * START java.time.*
+	 */
+	public static ZonedDateTime toZonedDateTime(String date, DateTimeFormatter formatter)
+	{
+		try
 		{
-			dateTimeFormatter = DateTimeFormat.forPattern(format);
-			dateTimeFormatters.put(format, dateTimeFormatter);
+			return ZonedDateTime.parse(date, formatter);
 		}
-		
-		return dateTimeFormatter.parseDateTime(date);
+		catch (Exception e)
+		{
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	public static LocalDateTime toLocalDateTime(String date, DateTimeFormatter formatter)
+	{
+		try
+		{
+			ZonedDateTime zonedDateTime = toZonedDateTime(date, formatter);
+			return LocalDateTime.ofInstant(zonedDateTime.toInstant(), ZoneId.systemDefault());
+		}
+		catch (Exception e)
+		{
+			throw new IllegalArgumentException(e);
+		}
 	}
 }
