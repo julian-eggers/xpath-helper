@@ -7,10 +7,17 @@ import java.time.format.DateTimeFormatter;
 
 import org.joda.time.DateTime;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class DateHelperTest
 {
+	@BeforeClass
+	public static void init()
+	{
+		System.setProperty("user.timezone", "Europe/Berlin");
+	}
+	
 	/**
 	 * START {@link java.util.Date}
 	 */

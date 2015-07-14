@@ -10,12 +10,19 @@ import nu.xom.Element;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.itelg.xpath.helper.test.support.XmlLoader;
 
 public class XPathHelperTest
 {
+	@BeforeClass
+	public static void init()
+	{
+		System.setProperty("user.timezone", "Europe/Berlin");
+	}
+	
 	@Test
 	public void testGetNodeList() throws Exception
 	{
