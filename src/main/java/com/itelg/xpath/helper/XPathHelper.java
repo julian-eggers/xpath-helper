@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import nu.xom.Node;
 import nu.xom.Nodes;
@@ -17,9 +19,22 @@ public class XPathHelper
 	private static final String[] booleanValues = new String[]
 	{ "1", "0", "true", "false" };
 
-	public static Nodes getNodeList(String xpath, Node node) throws Exception
+	public static Nodes getNodes(String xpath, Node node) throws Exception
 	{
 		return node.query(xpath);
+	}
+	
+	public static List<Node> getNodeList(String xpath, Node node) throws Exception
+	{
+		Nodes nodes = getNodes(xpath, node);
+		List<Node> nodeList = new LinkedList<Node>();
+		
+		for (int i = 0; i < nodes.size(); i++)
+		{
+			nodeList.add(nodes.get(i));
+		}
+		
+		return nodeList;
 	}
 
 	public static boolean hasNodes(Nodes nodes)
@@ -29,7 +44,7 @@ public class XPathHelper
 
 	public static Node getFirstNode(String xpath, Node node) throws Exception
 	{
-		Nodes nodes = getNodeList(xpath, node);
+		Nodes nodes = getNodes(xpath, node);
 
 		if (hasNodes(nodes))
 		{

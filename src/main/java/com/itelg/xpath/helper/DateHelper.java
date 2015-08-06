@@ -11,25 +11,16 @@ import org.joda.time.format.DateTimeFormat;
 
 public class DateHelper
 {
-	/**
-	 * START {@link java.util.Date}
-	 */
 	public static Date toDate(String date, String format)
 	{
 		return toDateTime(date, format).toDate();
 	}
 
-	/**
-	 * START {@link org.joda.time.DateTime}
-	 */
 	public static DateTime toDateTime(String date, String format)
 	{
 		return DateTimeFormat.forPattern(format).parseDateTime(date);
 	}
 
-	/**
-	 * START java.time.*
-	 */
 	public static ZonedDateTime toZonedDateTime(String date, DateTimeFormatter formatter)
 	{
 		try

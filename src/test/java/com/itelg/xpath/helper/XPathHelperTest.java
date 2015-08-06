@@ -24,6 +24,18 @@ public class XPathHelperTest
 	}
 	
 	@Test
+	public void testGetNodes() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		Assert.assertNotNull(XPathHelper.getNodes("nodes/node", rootElement));
+		Assert.assertEquals(2, XPathHelper.getNodes("nodes/node", rootElement).size());
+		Assert.assertNotNull(XPathHelper.getNodes("nodesEmpty/node", rootElement));
+		Assert.assertEquals(0, XPathHelper.getNodes("nodesEmpty/node", rootElement).size());
+		Assert.assertNotNull(XPathHelper.getNodes("nodesMissing/node", rootElement));
+		Assert.assertEquals(0, XPathHelper.getNodes("nodesMissing/node", rootElement).size());
+	}
+	
+	@Test
 	public void testGetNodeList() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
@@ -39,9 +51,9 @@ public class XPathHelperTest
 	public void testHasNodes() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
-		Assert.assertTrue(XPathHelper.hasNodes(XPathHelper.getNodeList("nodes/node", rootElement)));
-		Assert.assertFalse(XPathHelper.hasNodes(XPathHelper.getNodeList("nodesEmpty/node", rootElement)));
-		Assert.assertFalse(XPathHelper.hasNodes(XPathHelper.getNodeList("nodesMissing/node", rootElement)));
+		Assert.assertTrue(XPathHelper.hasNodes(XPathHelper.getNodes("nodes/node", rootElement)));
+		Assert.assertFalse(XPathHelper.hasNodes(XPathHelper.getNodes("nodesEmpty/node", rootElement)));
+		Assert.assertFalse(XPathHelper.hasNodes(XPathHelper.getNodes("nodesMissing/node", rootElement)));
 		Assert.assertFalse(XPathHelper.hasNodes(null));
 	}
 	
