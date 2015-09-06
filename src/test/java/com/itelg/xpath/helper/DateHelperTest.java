@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -72,7 +73,8 @@ public class DateHelperTest
 	@Test
 	public void testToZoneDateTime()
 	{
-		Assert.assertEquals(ZonedDateTime.of(2015, 7, 8, 12, 21, 30, 0, ZoneId.of("+02:00")), DateHelper.toZonedDateTime("2015-07-08T12:21:30.667+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME).withNano(0));
+		ZonedDateTime zonedDateTime = DateHelper.toZonedDateTime("2015-07-08T12:21:30.667+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME).withNano(0);
+		Assertions.assertThat(zonedDateTime).isIn(ZonedDateTime.of(2015, 7, 8, 10, 21, 30, 0, ZoneId.of("+02:00")), ZonedDateTime.of(2015, 7, 8, 12, 21, 30, 0, ZoneId.of("+02:00")));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
