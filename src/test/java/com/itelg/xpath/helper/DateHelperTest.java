@@ -73,8 +73,7 @@ public class DateHelperTest
 	@Test
 	public void testToZoneDateTime()
 	{
-		ZonedDateTime zonedDateTime = DateHelper.toZonedDateTime("2015-07-08T12:21:30.667+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME).withNano(0);
-		Assertions.assertThat(zonedDateTime).isIn(ZonedDateTime.of(2015, 7, 8, 10, 21, 30, 0, ZoneId.of("+02:00")), ZonedDateTime.of(2015, 7, 8, 12, 21, 30, 0, ZoneId.of("+02:00")));
+		Assert.assertEquals(ZonedDateTime.of(2015, 7, 8, 12, 21, 30, 0, ZoneId.of("+02:00")), DateHelper.toZonedDateTime("2015-07-08T12:21:30.667+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME).withNano(0));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -92,7 +91,8 @@ public class DateHelperTest
 	@Test
 	public void testToLocalDateTime()
 	{
-		Assert.assertEquals(LocalDateTime.of(2015, 7, 8, 12, 21, 30, 0), DateHelper.toLocalDateTime("2015-07-08T12:21:30.667+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME).withNano(0));
+		LocalDateTime localDateTime = DateHelper.toLocalDateTime("2015-07-08T12:21:30.667+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME).withNano(0);
+		Assertions.assertThat(localDateTime).isIn(LocalDateTime.of(2015, 7, 8, 10, 21, 30, 0), LocalDateTime.of(2015, 7, 8, 12, 21, 30, 0));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
