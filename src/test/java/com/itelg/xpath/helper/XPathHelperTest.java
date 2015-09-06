@@ -5,24 +5,18 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-import nu.xom.Element;
-
+import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.itelg.xpath.helper.test.support.XmlLoader;
 
+import nu.xom.Element;
+
 public class XPathHelperTest
 {
-	@BeforeClass
-	public static void init()
-	{
-		System.setProperty("user.timezone", "Europe/Berlin");
-	}
-	
 	@Test
 	public void testGetNodes() throws Exception
 	{
@@ -207,7 +201,8 @@ public class XPathHelperTest
 	public void testGetLocalDateTime() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
-		Assert.assertEquals(LocalDateTime.of(2015, 7, 8, 12, 21, 30, 0), XPathHelper.getLocalDateTime("localDateTime", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement).withNano(0));
+		LocalDateTime localDateTime = XPathHelper.getLocalDateTime("localDateTime", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement).withNano(0);
+		Assertions.assertThat(localDateTime).isIn(LocalDateTime.of(2015, 7, 8, 10, 21, 30, 0), LocalDateTime.of(2015, 7, 8, 12, 21, 30, 0));
 		Assert.assertNull(XPathHelper.getLocalDateTime("localDateTimeEmpty", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement));
 		Assert.assertNull(XPathHelper.getLocalDateTime("localDateTimeMissing", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement));
 	}
