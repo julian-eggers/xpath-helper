@@ -11,12 +11,20 @@ import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.itelg.xpath.exception.XPathValueConvertException;
 import com.itelg.xpath.helper.test.support.XmlLoader;
 
 import nu.xom.Element;
 
 public class XPathHelperTest
 {
+	@Test(expected = IllegalAccessException.class)
+	public void testPrivateConstructor() throws InstantiationException, IllegalAccessException
+	{
+		XPathHelper.class.newInstance();
+		Assert.fail("Constructor should be private");
+	}
+	
 	@Test
 	public void testGetNodes() throws Exception
 	{
@@ -85,11 +93,27 @@ public class XPathHelperTest
 		Assert.assertNull(XPathHelper.getDouble("doubleMissing", rootElement));
 	}
 	
-	@Test(expected = NumberFormatException.class)
+	@Test(expected = XPathValueConvertException.class)
 	public void testGetDoubleNotConvertable() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
 		XPathHelper.getDouble("doubleNotConvertable", rootElement);
+	}
+	
+	@Test
+	public void testGetPDouble() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		Assert.assertEquals(12.1, XPathHelper.getPDouble("double", rootElement), 0);
+		Assert.assertEquals(0, XPathHelper.getPDouble("doubleEmpty", rootElement), 0);
+		Assert.assertEquals(0, XPathHelper.getPDouble("doubleMissing", rootElement), 0);
+	}
+	
+	@Test(expected = XPathValueConvertException.class)
+	public void testGetPDoubleNotConvertable() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		XPathHelper.getPDouble("doubleNotConvertable", rootElement);
 	}
 	
 	@Test
@@ -101,11 +125,27 @@ public class XPathHelperTest
 		Assert.assertNull(XPathHelper.getInteger("integerMissing", rootElement));
 	}
 	
-	@Test(expected = NumberFormatException.class)
+	@Test(expected = XPathValueConvertException.class)
 	public void testGetIntegerNotConvertable() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
 		XPathHelper.getInteger("integerNotConvertable", rootElement);
+	}
+	
+	@Test
+	public void testGetInt() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		Assert.assertEquals(111, XPathHelper.getInt("integer", rootElement));
+		Assert.assertEquals(0, XPathHelper.getInt("integerEmpty", rootElement));
+		Assert.assertEquals(0, XPathHelper.getInt("integerMissing", rootElement));
+	}
+	
+	@Test(expected = XPathValueConvertException.class)
+	public void testGetIntNotConvertable() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		XPathHelper.getInt("integerNotConvertable", rootElement);
 	}
 	
 	@Test
@@ -117,11 +157,27 @@ public class XPathHelperTest
 		Assert.assertNull(XPathHelper.getLong("longMissing", rootElement));
 	}
 	
-	@Test(expected = NumberFormatException.class)
+	@Test(expected = XPathValueConvertException.class)
 	public void testGetLongNotConvertable() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
 		XPathHelper.getLong("longNotConvertable", rootElement);
+	}
+	
+	@Test
+	public void testGetPLong() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		Assert.assertEquals(222, XPathHelper.getPLong("long", rootElement));
+		Assert.assertEquals(0, XPathHelper.getPLong("longEmpty", rootElement));
+		Assert.assertEquals(0, XPathHelper.getPLong("longMissing", rootElement));
+	}
+	
+	@Test(expected = XPathValueConvertException.class)
+	public void testGetPLongNotConvertable() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		XPathHelper.getPLong("longNotConvertable", rootElement);
 	}
 	
 	@Test
@@ -138,11 +194,32 @@ public class XPathHelperTest
 		Assert.assertNull(XPathHelper.getBoolean("booleanMissing", rootElement));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = XPathValueConvertException.class)
 	public void testGetBooleanNotConvertable() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
 		XPathHelper.getBoolean("booleanNotConvertable", rootElement);
+	}
+	
+	@Test
+	public void testGetBool() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		Assert.assertTrue(XPathHelper.getBool("booleanTrue", rootElement));
+		Assert.assertFalse(XPathHelper.getBool("booleanFalse", rootElement));
+		Assert.assertTrue(XPathHelper.getBool("booleanTrueUppercase", rootElement));
+		Assert.assertFalse(XPathHelper.getBool("booleanFalseUppercase", rootElement));
+		Assert.assertTrue(XPathHelper.getBool("booleanTrueInteger", rootElement));
+		Assert.assertFalse(XPathHelper.getBool("booleanFalseInteger", rootElement));
+		Assert.assertFalse(XPathHelper.getBool("booleanEmpty", rootElement));
+		Assert.assertFalse(XPathHelper.getBool("booleanMissing", rootElement));
+	}
+	
+	@Test(expected = XPathValueConvertException.class)
+	public void testGetBoolNotConvertable() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		XPathHelper.getBool("booleanNotConvertable", rootElement);
 	}
 	
 	@Test
@@ -156,7 +233,7 @@ public class XPathHelperTest
 		Assert.assertNull(XPathHelper.getDate("dateMissing", "yyyy-MM-dd", rootElement));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = XPathValueConvertException.class)
 	public void testGetDateNotConvertable() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
@@ -174,7 +251,7 @@ public class XPathHelperTest
 		Assert.assertNull(XPathHelper.getDateTime("dateMissing", "yyyy-MM-dd", rootElement));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = XPathValueConvertException.class)
 	public void testGetDateTimeNotConvertable() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
@@ -190,7 +267,7 @@ public class XPathHelperTest
 		Assert.assertNull(XPathHelper.getZonedDateTime("zonedDateTimeMissing", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = XPathValueConvertException.class)
 	public void testGetZonedDateTimeNotConvertable() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
@@ -207,7 +284,7 @@ public class XPathHelperTest
 		Assert.assertNull(XPathHelper.getLocalDateTime("localDateTimeMissing", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = XPathValueConvertException.class)
 	public void testGetLocalDateTimeNotConvertable() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
@@ -223,7 +300,7 @@ public class XPathHelperTest
 		Assert.assertNull(XPathHelper.getEnum("enumMissing", TestEnum.class, rootElement));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = XPathValueConvertException.class)
 	public void testGetEnumNotConvertable() throws Exception
 	{
 		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));

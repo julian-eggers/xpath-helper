@@ -2,13 +2,13 @@ package com.itelg.xpath.helper.parser;
 
 import java.io.InputStream;
 
-import nu.xom.Element;
-
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.itelg.xpath.helper.DocumentHelper;
+
+import nu.xom.Element;
 
 public abstract class AbstractParser<T> implements Parser<T>
 {
@@ -44,5 +44,5 @@ public abstract class AbstractParser<T> implements Parser<T>
 		}
 	}
 
-	public abstract T doParse(Element rootElement) throws Exception;
+	protected abstract T doParse(Element rootElement) throws Exception;
 }

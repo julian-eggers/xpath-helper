@@ -2,16 +2,22 @@ package com.itelg.xpath.helper;
 
 import java.io.InputStream;
 
-import nu.xom.Element;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.itelg.xpath.helper.DocumentHelper;
 import com.itelg.xpath.helper.test.support.XmlLoader;
+
+import nu.xom.Element;
 
 public class DocumentHelperTest
 {
+	@Test(expected = IllegalAccessException.class)
+	public void testPrivateConstructor() throws InstantiationException, IllegalAccessException
+	{
+		DocumentHelper.class.newInstance();
+		Assert.fail("Constructor should be private");
+	}
+	
 	@Test
 	public void testGetRootElementString() throws Exception
 	{

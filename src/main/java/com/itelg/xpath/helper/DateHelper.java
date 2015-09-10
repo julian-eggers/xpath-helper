@@ -11,6 +11,14 @@ import org.joda.time.format.DateTimeFormat;
 
 public class DateHelper
 {
+	/**
+	 * Prevent initialization
+	 */
+	private DateHelper()
+	{
+		
+	}
+	
 	public static Date toDate(String date, String format)
 	{
 		return toDateTime(date, format).toDate();
