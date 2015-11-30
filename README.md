@@ -8,16 +8,10 @@ XPath helpers based on [XOM](http://www.xom.nu/ "XOM")
 
 #### Maven
 ```xml
-<repositories>
-	<repository>
-		<id>itelg</id>
-		<url>http://mvnrepo.itelg.com/release</url>
-	</repository>
-</repositories>
 <dependencies>
 	<dependency>
 		<groupId>com.itelg</groupId>
 		<artifactId>xpath-helper</artifactId>
-		<version>0.2.0.RELEASE</version>
+		<version>0.3.0-RELEASE</version>
 	</dependency>
 </dependencies>
