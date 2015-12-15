@@ -30,9 +30,11 @@ public class DocumentHelperTest
 	@Test
 	public void testGetRootElementInputStream() throws Exception
 	{
-		InputStream xml = XmlLoader.loadXmlStream("valid.xml");
-		Element rootElement = DocumentHelper.getRootElement(xml);
-		Assert.assertNotNull(rootElement);
-		Assert.assertEquals("test", rootElement.getLocalName());
+		try (InputStream xml = XmlLoader.loadXmlStream("valid.xml"))
+		{
+			Element rootElement = DocumentHelper.getRootElement(xml);
+			Assert.assertNotNull(rootElement);
+			Assert.assertEquals("test", rootElement.getLocalName());
+		}
 	}
 }
