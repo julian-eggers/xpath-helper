@@ -1,41 +1,44 @@
 <!DOCTYPE test>
 <test>
-	<string>TEST</string>
-	<stringEmpty></stringEmpty>
-	<integer>111</integer>
-	<integerNotConvertable>TEST</integerNotConvertable>
-	<integerEmpty></integerEmpty>
-	<long>222</long>
-	<longNotConvertable>TEST</longNotConvertable>
-	<longEmpty></longEmpty>
-	<double>12.1</double>
-	<doubleNotConvertable>TEST</doubleNotConvertable>
-	<doubleEmpty></doubleEmpty>
-	<booleanTrue>true</booleanTrue>
-	<booleanFalse>false</booleanFalse>
-	<booleanTrueUppercase>TRUE</booleanTrueUppercase>
-	<booleanFalseUppercase>FALSE</booleanFalseUppercase>
-	<booleanTrueInteger>1</booleanTrueInteger>
-	<booleanFalseInteger>0</booleanFalseInteger>
-	<booleanNotConvertable>TEST</booleanNotConvertable>
-	<booleanEmpty></booleanEmpty>
-	<date>2014-02-08</date>
-	<dateEmpty></dateEmpty>
-	<dateNotConvertable>TEST</dateNotConvertable>
-	<dateTime>2014-02-08 03:11:57</dateTime>
-	<dateTimeZone>2014-04-08 03:11:57.2 UTC</dateTimeZone>
-	<zonedDateTime>2015-07-08T12:21:30.667+02:00</zonedDateTime>
-	<zonedDateTimeEmpty></zonedDateTimeEmpty>
-	<zonedDateTimeNotConvertable>TEST</zonedDateTimeNotConvertable>
-	<localDateTime>2015-07-08T12:21:30.667+02:00</localDateTime>
-	<localDateTimeEmpty></localDateTimeEmpty>
-	<localDateTimeNotConvertable>TEST</localDateTimeNotConvertable>
-	<enum>VALUE1</enum>
-	<enumNotConvertable>TEST</enumNotConvertable>
-	<enumEmpty></enumEmpty>
-	<nodes>
-		<node>TEST1</node>
-		<node>TEST</node>
-	</nodes>
-	<nodesEmpty></nodesEmpty>
+  <string>TEST</string>
+  <stringEmpty></stringEmpty>
+  <integer>111</integer>
+  <integerNotConvertable>TEST</integerNotConvertable>
+  <integerEmpty></integerEmpty>
+  <long>222</long>
+  <longNotConvertable>TEST</longNotConvertable>
+  <longEmpty></longEmpty>
+  <double>12.1</double>
+  <doubleNotConvertable>TEST</doubleNotConvertable>
+  <doubleEmpty></doubleEmpty>
+  <booleanTrue>true</booleanTrue>
+  <booleanFalse>false</booleanFalse>
+  <booleanTrueUppercase>TRUE</booleanTrueUppercase>
+  <booleanFalseUppercase>FALSE</booleanFalseUppercase>
+  <booleanTrueInteger>1</booleanTrueInteger>
+  <booleanFalseInteger>0</booleanFalseInteger>
+  <booleanNotConvertable>TEST</booleanNotConvertable>
+  <booleanEmpty></booleanEmpty>
+  <date>2014-02-08</date>
+  <dateEmpty></dateEmpty>
+  <dateNotConvertable>TEST</dateNotConvertable>
+  <dateAttribute date="2014-02-08" />
+  <dateAttributeEmpty date="" />
+  <dateAttributeNotConvertable date="TEST" />
+  <dateTime>2014-02-08 03:11:57</dateTime>
+  <dateTimeZone>2014-04-08 03:11:57.2 UTC</dateTimeZone>
+  <zonedDateTime>2015-07-08T12:21:30.667+02:00</zonedDateTime>
+  <zonedDateTimeEmpty></zonedDateTimeEmpty>
+  <zonedDateTimeNotConvertable>TEST</zonedDateTimeNotConvertable>
+  <localDateTime>2015-07-08T12:21:30.667+02:00</localDateTime>
+  <localDateTimeEmpty></localDateTimeEmpty>
+  <localDateTimeNotConvertable>TEST</localDateTimeNotConvertable>
+  <enum>VALUE1</enum>
+  <enumNotConvertable>TEST</enumNotConvertable>
+  <enumEmpty></enumEmpty>
+  <nodes>
+    <node>TEST1</node>
+    <node>TEST</node>
+  </nodes>
+  <nodesEmpty></nodesEmpty>
 </test>
