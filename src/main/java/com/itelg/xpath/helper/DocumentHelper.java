@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.XMLReaderFactory;
 
 import nu.xom.Builder;
 import nu.xom.Document;
@@ -16,18 +18,23 @@ public class DocumentHelper
 	 */
 	private DocumentHelper()
 	{
-		
+
 	}
-	
+
 	public static Element getRootElement(String xml) throws Exception
 	{
-		InputStream inputStream = new ByteArrayInputStream(xml.getBytes());
-		return getRootElement(inputStream);
+		try (InputStream inputStream = new ByteArrayInputStream(xml.getBytes()))
+		{
+			return getRootElement(inputStream);
+		}
 	}
-	
+
 	public static Element getRootElement(InputStream inputStream) throws Exception
 	{
-		Document document = new Builder().build(inputStream);
+		XMLReader xmlReader = XMLReaderFactory.createXMLReader();
+		xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+		Document document = new Builder(xmlReader).build(inputStream);
 		Element rootElement = document.getRootElement();
 		IOUtils.closeQuietly(inputStream);
 		return rootElement;
