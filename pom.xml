@@ -5,11 +5,15 @@
   <name>xpath-helper</name>
   <description>XPath helpers based on Xom</description>
   <url>https://github.com/julian-eggers/xpath-helper</url>
-  <version>0.4.1-RELEASE</version>
+  <version>0.4.2-RELEASE</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
+    <cobertura.version>2.7</cobertura.version>
+    <coveralls.version>4.1.0</coveralls.version>
+    <powermock.version>1.6.3</powermock.version>
+    <easymock.version>3.4</easymock.version>
   </properties>
 
   <scm>
@@ -86,23 +90,19 @@
       </plugin>
       <!-- TEST AND COVERAGE -->
       <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.5.201505241946</version>
-        <executions>
-          <execution>
-            <id>prepare-agent</id>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-        </executions>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>${cobertura.version}</version>
+        <configuration>
+          <format>xml</format>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.eluder.coveralls</groupId>
         <artifactId>coveralls-maven-plugin</artifactId>
-        <version>4.0.0</version>
+        <version>${coveralls.version}</version>
       </plugin>
+      <!-- DEPLOYMENT -->
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <version>2.5.3</version>
@@ -116,11 +116,10 @@
           <dependency>
             <groupId>org.apache.maven.scm</groupId>
             <artifactId>maven-scm-provider-gitexe</artifactId>
-            <version>1.8.1</version>
+            <version>1.9.4</version>
           </dependency>
         </dependencies>
       </plugin>
-      <!-- DEPLOYMENT -->
       <plugin>
         <groupId>de.jutzig</groupId>
         <artifactId>github-release-plugin</artifactId>
@@ -173,7 +172,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.12</version>
+      <version>1.7.13</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -188,14 +187,26 @@
     <dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
-      <version>2.8.2</version>
+      <version>2.9.1</version>
     </dependency>
 
     <!-- Testing -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymock</artifactId>
+      <version>${easymock.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-module-junit4</artifactId>
+      <version>${powermock.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-api-easymock</artifactId>
+      <version>${powermock.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
