@@ -31,12 +31,18 @@ public class DocumentHelper
 
 	public static Element getRootElement(InputStream inputStream) throws Exception
 	{
-		XMLReader xmlReader = XMLReaderFactory.createXMLReader();
-		xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+		try
+		{
+			XMLReader xmlReader = XMLReaderFactory.createXMLReader();
+			xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 
-		Document document = new Builder(xmlReader).build(inputStream);
-		Element rootElement = document.getRootElement();
-		IOUtils.closeQuietly(inputStream);
-		return rootElement;
+			Document document = new Builder(xmlReader).build(inputStream);
+			return document.getRootElement();
+		}
+		catch (Exception e)
+		{
+			IOUtils.closeQuietly(inputStream);
+			throw e;
+		}
 	}
 }

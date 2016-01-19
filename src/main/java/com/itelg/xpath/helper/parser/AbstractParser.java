@@ -2,7 +2,6 @@ package com.itelg.xpath.helper.parser;
 
 import java.io.InputStream;
 
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +23,7 @@ public abstract class AbstractParser<T> implements Parser<T>
 		}
 		catch (Exception e)
 		{
-			log.warn(xml, e);
+			log.warn(e.getMessage(), e);
 			throw e;
 		}
 	}
@@ -39,7 +38,7 @@ public abstract class AbstractParser<T> implements Parser<T>
 		}
 		catch (Exception e)
 		{
-			log.warn(IOUtils.toString(xml), e);
+			log.warn(e.getMessage(), e);
 			throw e;
 		}
 	}
