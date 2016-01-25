@@ -1,15 +1,15 @@
 package com.itelg.xpath.helper.parser;
 
 import java.io.ByteArrayInputStream;
-
-import nu.xom.Element;
+import java.io.InputStreamReader;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.itelg.xpath.helper.XPathHelper;
-import com.itelg.xpath.helper.parser.AbstractParser;
 import com.itelg.xpath.helper.test.support.XmlLoader;
+
+import nu.xom.Element;
 
 public class AbstractParserTest
 {
@@ -55,6 +55,28 @@ public class AbstractParserTest
 	{
 		TestParser parser = new TestParser();
 		parser.parse(new ByteArrayInputStream("<test/></test>".getBytes()));
+	}
+	
+	@Test
+	public void testParseReader() throws Exception
+	{
+		TestParser parser = new TestParser();
+		TestObject object = parser.parse(new InputStreamReader(XmlLoader.loadXmlStream("valid.xml")));
+		Assert.assertEquals("TEST", object.getValue());
+	}
+	
+	@Test(expected = Exception.class)
+	public void testParseReaderFileNotFound() throws Exception
+	{
+		TestParser parser = new TestParser();
+		parser.parse(new InputStreamReader(XmlLoader.loadXmlStream("notfound.xml")));
+	}
+	
+	@Test(expected = Exception.class)
+	public void testParseReaderInvalidXml() throws Exception
+	{
+		TestParser parser = new TestParser();
+		parser.parse(new InputStreamReader(new ByteArrayInputStream("<test/></test>".getBytes())));
 	}
 	
 	private static class TestParser extends AbstractParser<TestObject>

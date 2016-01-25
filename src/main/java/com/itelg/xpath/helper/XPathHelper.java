@@ -13,6 +13,7 @@ import org.joda.time.DateTime;
 
 import com.itelg.xpath.exception.XPathValueConvertException;
 
+import nu.xom.Element;
 import nu.xom.Node;
 import nu.xom.Nodes;
 
@@ -51,6 +52,11 @@ public class XPathHelper
 	{
 		return (nodes != null && nodes.size() > 0);
 	}
+	
+	public static boolean hasNode(String xpath, Node node)
+	{
+		return getFirstNode(xpath, node) != null;
+	}
 
 	public static Node getFirstNode(String xpath, Node node)
 	{
@@ -61,6 +67,18 @@ public class XPathHelper
 			return nodes.get(0);
 		}
 
+		return null;
+	}
+	
+	public static Element getFirstElement(String xpath, Node node)
+	{
+		Node firstNode = getFirstNode(xpath, node);
+		
+		if (firstNode != null)
+		{
+			return (Element) firstNode;
+		}
+		
 		return null;
 	}
 
@@ -212,7 +230,7 @@ public class XPathHelper
 			{
 				if (StringUtils.isNumeric(value))
 				{
-					return Boolean.valueOf(value.equals("1"));
+					return Boolean.valueOf("1".equals(value));
 				}
 			}
 			else
@@ -236,7 +254,7 @@ public class XPathHelper
 			{
 				if (StringUtils.isNumeric(value))
 				{
-					return value.equals("1");
+					return "1".equals(value);
 				}
 			}
 			else

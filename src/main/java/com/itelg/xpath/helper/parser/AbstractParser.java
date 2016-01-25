@@ -1,6 +1,7 @@
 package com.itelg.xpath.helper.parser;
 
 import java.io.InputStream;
+import java.io.Reader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +31,21 @@ public abstract class AbstractParser<T> implements Parser<T>
 	
 	@Override
 	public T parse(InputStream xml) throws Exception
+	{
+		try
+		{
+			Element rootElement = DocumentHelper.getRootElement(xml);
+			return doParse(rootElement);
+		}
+		catch (Exception e)
+		{
+			log.warn(e.getMessage(), e);
+			throw e;
+		}
+	}
+	
+	@Override
+	public T parse(Reader xml) throws Exception
 	{
 		try
 		{

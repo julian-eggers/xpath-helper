@@ -1,6 +1,7 @@
 package com.itelg.xpath.helper;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,6 +36,17 @@ public class DocumentHelperTest
 			Element rootElement = DocumentHelper.getRootElement(xml);
 			Assert.assertNotNull(rootElement);
 			Assert.assertEquals("test", rootElement.getLocalName());
+		}
+	}
+	
+	@Test
+	public void testGetRootElementReady() throws Exception
+	{
+		try (InputStream inputStream = XmlLoader.loadXmlStream("valid.xml"))
+		{
+			Element rootElement = DocumentHelper.getRootElement(new InputStreamReader(inputStream));
+			Assert.assertNotNull(rootElement);
+			Assert.assertEquals("test", rootElement.getLocalName());			
 		}
 	}
 }
