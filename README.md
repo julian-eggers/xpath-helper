@@ -19,6 +19,31 @@ XPath helpers based on [XOM](http://www.xom.nu/ "XOM")
 </dependencies>
 ```
 
+#### Supported methods
+```java
+getNodes() : Nodes
+getNodeList() : List<Node>
+hasNodes() : boolean
+hasNode() : boolean
+getFirstNode() : Node
+getFirstElement() : Element
+getString() : String
+getNullableString() : String
+getDouble() : Double
+getPDouble() : double
+getInteger() : Integer
+getInt() : int
+getLong() : Long
+getPLong() : long
+getBoolean() : Boolean
+getBool() : boolean
+getDate() : Date
+getDateTime() : DateTime
+getZonedDateTime() : ZonedDateTime
+getLocalDateTime() : LocalDateTime
+getEnum() : Enum<E>
+```
+
 #### AbstractParser-Example
 ```java
 public static void main(String[] args) throws Exception
