@@ -5,7 +5,7 @@
   <name>xpath-helper</name>
   <description>XPath helpers based on Xom</description>
   <url>https://github.com/julian-eggers/xpath-helper</url>
-  <version>0.4.4-RELEASE</version>
+  <version>0.4.5-RELEASE</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -33,7 +33,7 @@
   <localDateTime>2015-07-08T12:21:30.667+02:00</localDateTime>
   <localDateTimeEmpty></localDateTimeEmpty>
   <localDateTimeNotConvertable>TEST</localDateTimeNotConvertable>
-  <enum>VALUE1</enum>
+  <enum>Value1</enum>
   <enumNotConvertable>TEST</enumNotConvertable>
   <enumEmpty></enumEmpty>
   <nodes>

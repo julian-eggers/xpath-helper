@@ -352,7 +352,7 @@ public class XPathHelper
 		{
 			try
 			{
-				return Enum.valueOf(clazz, value);
+				return Enum.valueOf(clazz, value.toUpperCase());
 			}
 			catch (Exception e)
 			{

@@ -40,7 +40,7 @@ public class DocumentHelperTest
 	}
 	
 	@Test
-	public void testGetRootElementReady() throws Exception
+	public void testGetRootElementReader() throws Exception
 	{
 		try (InputStream inputStream = XmlLoader.loadXmlStream("valid.xml"))
 		{
