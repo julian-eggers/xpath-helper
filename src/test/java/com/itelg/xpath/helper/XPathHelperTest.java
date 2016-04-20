@@ -95,7 +95,7 @@ public class XPathHelperTest
         Assert.assertEquals("TEST", XPathHelper.getLastNode("string", rootElement).getValue());
         Assert.assertNull(XPathHelper.getLastNode("nodesMissing", rootElement));
     }
-    
+
     @Test
     public void testGetLastElement() throws Exception
     {

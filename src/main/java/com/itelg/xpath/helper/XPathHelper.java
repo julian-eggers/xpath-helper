@@ -97,7 +97,7 @@ public class XPathHelper
     public static Element getLastElement(String xpath, Node node)
     {
         Node lastNode = getLastNode(xpath, node);
-        
+
         if (lastNode != null)
         {
             return (Element) lastNode;

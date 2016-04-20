@@ -14,51 +14,51 @@ import nu.xom.Element;
 
 public class DocumentHelper
 {
-	/**
-	 * Prevent initialization
-	 */
-	private DocumentHelper()
-	{
+    /**
+     * Prevent initialization
+     */
+    private DocumentHelper()
+    {
 
-	}
+    }
 
-	public static Element getRootElement(String xml) throws Exception
-	{
-		try (InputStream inputStream = new ByteArrayInputStream(xml.getBytes()))
-		{
-			return getRootElement(inputStream);
-		}
-	}
+    public static Element getRootElement(String xml) throws Exception
+    {
+        try (InputStream inputStream = new ByteArrayInputStream(xml.getBytes()))
+        {
+            return getRootElement(inputStream);
+        }
+    }
 
-	public static Element getRootElement(InputStream inputStream) throws Exception
-	{
-		try
-		{
-			XMLReader xmlReader = XMLReaderFactory.createXMLReader();
-			xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+    public static Element getRootElement(InputStream inputStream) throws Exception
+    {
+        try
+        {
+            XMLReader xmlReader = XMLReaderFactory.createXMLReader();
+            xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 
-			Document document = new Builder(xmlReader).build(inputStream);
-			return document.getRootElement();
-		}
-		finally
-		{
-			IOUtils.closeQuietly(inputStream);
-		}
-	}
-	
-	public static Element getRootElement(Reader reader) throws Exception
-	{
-		try
-		{
-			XMLReader xmlReader = XMLReaderFactory.createXMLReader();
-			xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+            Document document = new Builder(xmlReader).build(inputStream);
+            return document.getRootElement();
+        }
+        finally
+        {
+            IOUtils.closeQuietly(inputStream);
+        }
+    }
 
-			Document document = new Builder(xmlReader).build(reader);
-			return document.getRootElement();
-		}
-		finally
-		{
-			IOUtils.closeQuietly(reader);
-		}
-	}
+    public static Element getRootElement(Reader reader) throws Exception
+    {
+        try
+        {
+            XMLReader xmlReader = XMLReaderFactory.createXMLReader();
+            xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+            Document document = new Builder(xmlReader).build(reader);
+            return document.getRootElement();
+        }
+        finally
+        {
+            IOUtils.closeQuietly(reader);
+        }
+    }
 }

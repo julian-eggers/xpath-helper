@@ -12,52 +12,52 @@ import nu.xom.Element;
 
 public abstract class AbstractParser<T> implements Parser<T>
 {
-	protected static final Logger log = LoggerFactory.getLogger(AbstractParser.class);
+    protected static final Logger log = LoggerFactory.getLogger(AbstractParser.class);
 
-	@Override
-	public T parse(String xml) throws Exception
-	{
-		try
-		{
-			Element rootElement = DocumentHelper.getRootElement(xml);
-			return doParse(rootElement);
-		}
-		catch (Exception e)
-		{
-			log.warn(e.getMessage(), e);
-			throw e;
-		}
-	}
-	
-	@Override
-	public T parse(InputStream xml) throws Exception
-	{
-		try
-		{
-			Element rootElement = DocumentHelper.getRootElement(xml);
-			return doParse(rootElement);
-		}
-		catch (Exception e)
-		{
-			log.warn(e.getMessage(), e);
-			throw e;
-		}
-	}
-	
-	@Override
-	public T parse(Reader xml) throws Exception
-	{
-		try
-		{
-			Element rootElement = DocumentHelper.getRootElement(xml);
-			return doParse(rootElement);
-		}
-		catch (Exception e)
-		{
-			log.warn(e.getMessage(), e);
-			throw e;
-		}
-	}
+    @Override
+    public T parse(String xml) throws Exception
+    {
+        try
+        {
+            Element rootElement = DocumentHelper.getRootElement(xml);
+            return doParse(rootElement);
+        }
+        catch (Exception e)
+        {
+            log.warn(e.getMessage(), e);
+            throw e;
+        }
+    }
 
-	protected abstract T doParse(Element rootElement) throws Exception;
+    @Override
+    public T parse(InputStream xml) throws Exception
+    {
+        try
+        {
+            Element rootElement = DocumentHelper.getRootElement(xml);
+            return doParse(rootElement);
+        }
+        catch (Exception e)
+        {
+            log.warn(e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    @Override
+    public T parse(Reader xml) throws Exception
+    {
+        try
+        {
+            Element rootElement = DocumentHelper.getRootElement(xml);
+            return doParse(rootElement);
+        }
+        catch (Exception e)
+        {
+            log.warn(e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    protected abstract T doParse(Element rootElement) throws Exception;
 }

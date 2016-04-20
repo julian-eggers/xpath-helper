@@ -11,46 +11,46 @@ import org.joda.time.format.DateTimeFormat;
 
 public class DateHelper
 {
-	/**
-	 * Prevent initialization
-	 */
-	private DateHelper()
-	{
-		
-	}
-	
-	public static Date toDate(String date, String format)
-	{
-		return toDateTime(date, format).toDate();
-	}
+    /**
+     * Prevent initialization
+     */
+    private DateHelper()
+    {
 
-	public static DateTime toDateTime(String date, String format)
-	{
-		return DateTimeFormat.forPattern(format).parseDateTime(date);
-	}
+    }
 
-	public static ZonedDateTime toZonedDateTime(String date, DateTimeFormatter formatter)
-	{
-		try
-		{
-			return ZonedDateTime.parse(date, formatter);
-		}
-		catch (Exception e)
-		{
-			throw new IllegalArgumentException(e);
-		}
-	}
+    public static Date toDate(String date, String format)
+    {
+        return toDateTime(date, format).toDate();
+    }
 
-	public static LocalDateTime toLocalDateTime(String date, DateTimeFormatter formatter)
-	{
-		try
-		{
-			ZonedDateTime zonedDateTime = toZonedDateTime(date, formatter);
-			return LocalDateTime.ofInstant(zonedDateTime.toInstant(), ZoneId.systemDefault());
-		}
-		catch (Exception e)
-		{
-			throw new IllegalArgumentException(e);
-		}
-	}
+    public static DateTime toDateTime(String date, String format)
+    {
+        return DateTimeFormat.forPattern(format).parseDateTime(date);
+    }
+
+    public static ZonedDateTime toZonedDateTime(String date, DateTimeFormatter formatter)
+    {
+        try
+        {
+            return ZonedDateTime.parse(date, formatter);
+        }
+        catch (Exception e)
+        {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    public static LocalDateTime toLocalDateTime(String date, DateTimeFormatter formatter)
+    {
+        try
+        {
+            ZonedDateTime zonedDateTime = toZonedDateTime(date, formatter);
+            return LocalDateTime.ofInstant(zonedDateTime.toInstant(), ZoneId.systemDefault());
+        }
+        catch (Exception e)
+        {
+            throw new IllegalArgumentException(e);
+        }
+    }
 }
