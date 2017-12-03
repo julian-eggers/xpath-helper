@@ -10,13 +10,11 @@ XPath helpers based on [XOM](http://www.xom.nu/ "XOM")
 
 #### Maven
 ```xml
-<dependencies>
-	<dependency>
-		<groupId>com.itelg</groupId>
-		<artifactId>xpath-helper</artifactId>
-		<version>0.4.6-RELEASE</version>
-	</dependency>
-</dependencies>
+<dependency>
+	<groupId>com.itelg</groupId>
+	<artifactId>xpath-helper</artifactId>
+	<version>0.4.7-RELEASE</version>
+</dependency>
 ```
 
 #### Supported methods
