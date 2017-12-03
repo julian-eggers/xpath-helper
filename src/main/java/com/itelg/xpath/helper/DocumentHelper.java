@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Reader;
 
-import org.apache.commons.io.IOUtils;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
@@ -32,7 +31,7 @@ public class DocumentHelper
 
     public static Element getRootElement(InputStream inputStream) throws Exception
     {
-        try
+        try (InputStream internal = inputStream)
         {
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
             xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
@@ -40,25 +39,17 @@ public class DocumentHelper
             Document document = new Builder(xmlReader).build(inputStream);
             return document.getRootElement();
         }
-        finally
-        {
-            IOUtils.closeQuietly(inputStream);
-        }
     }
 
     public static Element getRootElement(Reader reader) throws Exception
     {
-        try
+        try (Reader internal = reader)
         {
             XMLReader xmlReader = XMLReaderFactory.createXMLReader();
             xmlReader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 
             Document document = new Builder(xmlReader).build(reader);
             return document.getRootElement();
-        }
-        finally
-        {
-            IOUtils.closeQuietly(reader);
         }
     }
 }
