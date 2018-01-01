@@ -44,11 +44,11 @@ pipeline
         
         stage('Release')
         {
-            when { branch "master" }
+            when { branch "Jenkinsfile-Test" }
         
             steps
             {
-                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                sh 'mvn clean deploy -Dmaven.test.skip=true -DautoReleaseAfterClose=true'
             }
         }
     }
