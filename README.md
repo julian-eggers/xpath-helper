@@ -39,6 +39,7 @@ getBoolean() : Boolean
 getBool() : boolean
 getZonedDateTime() : ZonedDateTime
 getLocalDateTime() : LocalDateTime
+getLocalDate() : LocalDate
 getEnum() : Enum<E>
 ```
 
