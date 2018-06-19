@@ -6,8 +6,6 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.fest.assertions.Assertions;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -258,58 +256,6 @@ public class XPathHelperTest
     {
         Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
         XPathHelper.getBool("booleanNotConvertable", rootElement);
-    }
-
-    @Test
-    public void testGetDateTagValue() throws Exception
-    {
-        Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
-        Assert.assertEquals(new DateTime(2014, 2, 8, 0, 0).toDate(), XPathHelper.getDate("date", "yyyy-MM-dd", rootElement));
-        Assert.assertEquals(new DateTime(2014, 2, 8, 3, 11, 57).toDate(), XPathHelper.getDate("dateTime", "yyyy-MM-dd HH:mm:ss", rootElement));
-        Assert.assertEquals(new DateTime(2014, 4, 8, 3, 11, 57, 200, DateTimeZone.UTC).toDate(), XPathHelper.getDate("dateTimeZone", "yyyy-MM-dd HH:mm:ss.S z", rootElement));
-        Assert.assertNull(XPathHelper.getDate("dateEmpty", "yyyy-MM-dd", rootElement));
-        Assert.assertNull(XPathHelper.getDate("dateMissing", "yyyy-MM-dd", rootElement));
-    }
-
-    @Test
-    public void testGetDateAttribute() throws Exception
-    {
-        Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
-        Assert.assertEquals(new DateTime(2014, 2, 8, 0, 0).toDate(), XPathHelper.getDate("dateAttribute/@date", "yyyy-MM-dd", rootElement));
-        Assert.assertNull(XPathHelper.getDate("dateAttributeEmpty/@date", "yyyy-MM-dd", rootElement));
-        Assert.assertNull(XPathHelper.getDate("dateAttributeMissing/@date", "yyyy-MM-dd", rootElement));
-    }
-
-    @Test(expected = XPathValueConvertException.class)
-    public void testGetDateTagValueNotConvertable() throws Exception
-    {
-        Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
-        XPathHelper.getDate("dateNotConvertable", "yyyy-MM-dd", rootElement);
-    }
-
-    @Test(expected = XPathValueConvertException.class)
-    public void testGetDateAttributeNotConvertable() throws Exception
-    {
-        Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
-        XPathHelper.getDate("dateAttributeNotConvertable/@date", "yyyy-MM-dd", rootElement);
-    }
-
-    @Test
-    public void testGetDateTime() throws Exception
-    {
-        Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
-        Assert.assertEquals(new DateTime(2014, 2, 8, 0, 0), XPathHelper.getDateTime("date", "yyyy-MM-dd", rootElement));
-        Assert.assertEquals(new DateTime(2014, 2, 8, 3, 11, 57), XPathHelper.getDateTime("dateTime", "yyyy-MM-dd HH:mm:ss", rootElement));
-        Assert.assertEquals(new DateTime(2014, 4, 8, 3, 11, 57, 200, DateTimeZone.UTC), XPathHelper.getDateTime("dateTimeZone", "yyyy-MM-dd HH:mm:ss.S z", rootElement));
-        Assert.assertNull(XPathHelper.getDateTime("dateEmpty", "yyyy-MM-dd", rootElement));
-        Assert.assertNull(XPathHelper.getDateTime("dateMissing", "yyyy-MM-dd", rootElement));
-    }
-
-    @Test(expected = XPathValueConvertException.class)
-    public void testGetDateTimeNotConvertable() throws Exception
-    {
-        Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
-        XPathHelper.getDateTime("dateNotConvertable", "yyyy-MM-dd", rootElement);
     }
 
     @Test

@@ -13,7 +13,7 @@ XPath helpers based on [XOM](http://www.xom.nu/ "XOM")
 <dependency>
 	<groupId>com.itelg</groupId>
 	<artifactId>xpath-helper</artifactId>
-	<version>0.4.7-RELEASE</version>
+	<version>0.5.0-RELEASE</version>
 </dependency>
 ```
 
@@ -37,8 +37,6 @@ getLong() : Long
 getPLong() : long
 getBoolean() : Boolean
 getBool() : boolean
-getDate() : Date
-getDateTime() : DateTime
 getZonedDateTime() : ZonedDateTime
 getLocalDateTime() : LocalDateTime
 getEnum() : Enum<E>
