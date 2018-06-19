@@ -1,5 +1,6 @@
 package com.itelg.xpath.helper;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -317,6 +318,25 @@ public class XPathHelper
             try
             {
                 return DateHelper.toLocalDateTime(value, formatter);
+            }
+            catch (Exception e)
+            {
+                throw new XPathValueConvertException(e, value);
+            }
+        }
+
+        return null;
+    }
+
+    public static LocalDate getLocalDate(String xpath, Node node)
+    {
+        String value = getString(xpath, node);
+
+        if (StringUtils.isNotBlank(value))
+        {
+            try
+            {
+                return LocalDate.parse(value);
             }
             catch (Exception e)
             {

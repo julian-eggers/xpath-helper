@@ -1,5 +1,9 @@
 package com.itelg.xpath.helper;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -289,6 +293,22 @@ public class XPathHelperTest
     {
         Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
         XPathHelper.getLocalDateTime("localDateTimeNotConvertable", DateTimeFormatter.ISO_OFFSET_DATE_TIME, rootElement);
+    }
+
+    @Test
+    public void testGetLocalDate() throws Exception
+    {
+        Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+        assertEquals(LocalDate.of(2015, 7, 8), XPathHelper.getLocalDate("localDate", rootElement));
+        assertNull(XPathHelper.getLocalDate("localDateEmpty", rootElement));
+        assertNull(XPathHelper.getLocalDate("localDateMissing", rootElement));
+    }
+
+    @Test(expected = XPathValueConvertException.class)
+    public void testGetLocalDateNotConvertable() throws Exception
+    {
+        Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+        XPathHelper.getLocalDate("localDateNotConvertable", rootElement);
     }
 
     @Test
