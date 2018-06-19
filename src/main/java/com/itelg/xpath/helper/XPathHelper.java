@@ -1,15 +1,14 @@
 package com.itelg.xpath.helper;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
 
 import com.itelg.xpath.exception.XPathValueConvertException;
 
@@ -19,8 +18,7 @@ import nu.xom.Nodes;
 
 public class XPathHelper
 {
-    private static final String[] booleanValues = new String[]
-    { "1", "0", "true", "false" };
+    private static final String[] booleanValues = new String[] { "1", "0", "true", "false" };
 
     /**
      * Prevent initialization
@@ -38,7 +36,7 @@ public class XPathHelper
     public static List<Node> getNodeList(String xpath, Node node)
     {
         Nodes nodes = getNodes(xpath, node);
-        List<Node> nodeList = new LinkedList<Node>();
+        List<Node> nodeList = new LinkedList<>();
 
         for (int i = 0; i < nodes.size(); i++)
         {
@@ -50,7 +48,7 @@ public class XPathHelper
 
     public static boolean hasNodes(Nodes nodes)
     {
-        return (nodes != null && nodes.size() > 0);
+        return nodes != null && nodes.size() > 0;
     }
 
     public static boolean hasNode(String xpath, Node node)
@@ -292,44 +290,6 @@ public class XPathHelper
         return false;
     }
 
-    public static Date getDate(String xpath, String format, Node node)
-    {
-        String value = getString(xpath, node);
-
-        if (StringUtils.isNotBlank(value))
-        {
-            try
-            {
-                return DateHelper.toDate(value, format);
-            }
-            catch (Exception e)
-            {
-                throw new XPathValueConvertException(e, value);
-            }
-        }
-
-        return null;
-    }
-
-    public static DateTime getDateTime(String xpath, String format, Node node)
-    {
-        String value = getString(xpath, node);
-
-        if (StringUtils.isNotBlank(value))
-        {
-            try
-            {
-                return DateHelper.toDateTime(value, format);
-            }
-            catch (Exception e)
-            {
-                throw new XPathValueConvertException(e, value);
-            }
-        }
-
-        return null;
-    }
-
     public static ZonedDateTime getZonedDateTime(String xpath, DateTimeFormatter formatter, Node node)
     {
         String value = getString(xpath, node);
@@ -358,6 +318,25 @@ public class XPathHelper
             try
             {
                 return DateHelper.toLocalDateTime(value, formatter);
+            }
+            catch (Exception e)
+            {
+                throw new XPathValueConvertException(e, value);
+            }
+        }
+
+        return null;
+    }
+
+    public static LocalDate getLocalDate(String xpath, Node node)
+    {
+        String value = getString(xpath, node);
+
+        if (StringUtils.isNotBlank(value))
+        {
+            try
+            {
+                return LocalDate.parse(value);
             }
             catch (Exception e)
             {

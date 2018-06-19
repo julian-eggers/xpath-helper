@@ -4,10 +4,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 
 public class DateHelper
 {
@@ -17,16 +13,6 @@ public class DateHelper
     private DateHelper()
     {
 
-    }
-
-    public static Date toDate(String date, String format)
-    {
-        return toDateTime(date, format).toDate();
-    }
-
-    public static DateTime toDateTime(String date, String format)
-    {
-        return DateTimeFormat.forPattern(format).parseDateTime(date);
     }
 
     public static ZonedDateTime toZonedDateTime(String date, DateTimeFormatter formatter)
