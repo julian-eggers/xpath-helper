@@ -5,7 +5,7 @@
   <name>xpath-helper</name>
   <description>XPath helpers based on Xom</description>
   <url>https://github.com/julian-eggers/xpath-helper</url>
-  <version>0.5.0-RELEASE</version>
+  <version>0.5.1-RELEASE</version>
 
   <properties>
     <!-- System -->
@@ -14,7 +14,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <!-- Testing -->
-    <jacoco.version>0.8.1</jacoco.version>
+    <jacoco.version>0.8.2</jacoco.version>
     <powermock.version>1.7.3</powermock.version>
     <easymock.version>3.6</easymock.version>
     <!-- Build -->
@@ -56,7 +56,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.7</version>
+      <version>3.8.1</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>

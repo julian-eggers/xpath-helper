@@ -365,4 +365,16 @@ public class XPathHelper
 
         return null;
     }
+
+	public static <E extends Enum<E>> E getEnum(String xpath, Class<E> clazz, E defaultValue, Node node)
+	{
+		try
+		{
+			return getEnum(xpath, clazz, node);
+		}
+		catch (XPathValueConvertException e)
+		{
+			return defaultValue;
+		}
+	}
 }
