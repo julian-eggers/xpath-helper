@@ -327,8 +327,31 @@ public class XPathHelperTest
         Assert.assertNull(XPathHelper.getEnum("enumNotConvertable", TestEnum.class, rootElement));
     }
 
+	@Test
+	public void testGetEnumOrDefault() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		assertEquals(TestEnum.DEFAULT,
+				XPathHelper.getEnum("enumNotConvertable", TestEnum.class, TestEnum.DEFAULT, rootElement));
+	}
+
+	@Test
+	public void testGetEnumWithEmpty() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		assertNull(XPathHelper.getEnum("enumEmpty", TestEnum.class, TestEnum.DEFAULT, rootElement));
+		assertNull(XPathHelper.getEnum("enumMissing", TestEnum.class, TestEnum.DEFAULT, rootElement));
+	}
+
+	@Test
+	public void testGetEnumWithKnownEnum() throws Exception
+	{
+		Element rootElement = DocumentHelper.getRootElement(XmlLoader.loadXmlStream("valid.xml"));
+		assertEquals(TestEnum.VALUE1, XPathHelper.getEnum("enum", TestEnum.class, TestEnum.DEFAULT, rootElement));
+	}
+
     private static enum TestEnum
     {
-        VALUE1;
+		VALUE1, DEFAULT;
     }
 }
