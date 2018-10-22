@@ -5,9 +5,9 @@ import java.io.Reader;
 
 public interface Parser<T>
 {
-    public T parse(String xml) throws Exception;
+    T parse(String xml) throws Exception;
 
-    public T parse(InputStream xml) throws Exception;
+    T parse(InputStream xml) throws Exception;
 
-    public T parse(Reader xml) throws Exception;
+    T parse(Reader xml) throws Exception;
 }

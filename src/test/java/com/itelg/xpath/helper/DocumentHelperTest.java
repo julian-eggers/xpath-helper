@@ -12,13 +12,6 @@ import nu.xom.Element;
 
 public class DocumentHelperTest
 {
-    @Test(expected = IllegalAccessException.class)
-    public void testPrivateConstructor() throws InstantiationException, IllegalAccessException
-    {
-        DocumentHelper.class.newInstance();
-        Assert.fail("Constructor should be private");
-    }
-
     @Test
     public void testGetRootElementString() throws Exception
     {
