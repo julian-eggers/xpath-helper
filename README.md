@@ -13,7 +13,7 @@ XPath helpers based on [XOM](http://www.xom.nu/ "XOM")
 <dependency>
 	<groupId>com.itelg</groupId>
 	<artifactId>xpath-helper</artifactId>
-	<version>0.5.2-RELEASE</version>
+	<version>0.5.3-RELEASE</version>
 </dependency>
 ```
 
@@ -96,4 +96,18 @@ public static void main(String[] args) throws Exception
 	System.out.println(XPathHelper.getString("stringValue", rootElement));
 	System.out.println(XPathHelper.getDouble("doubleValue", rootElement));
 }
+```
+
+
+
+## Build & Release
+
+### Build
+```
+mvn clean package
+```
+
+### Release
+```
+mvn clean deploy
 ```
