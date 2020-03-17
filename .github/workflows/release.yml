@@ -42,4 +42,4 @@ jobs:
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-        run: mvn clean verify deploy -Dgpg.executable=gpg -Dgpg.passphrase=${GPG_PASSPHRASE}
+        run: export GPG_TTY=$(tty) && mvn clean verify deploy -Dgpg.executable=gpg -Dgpg.passphrase=${GPG_PASSPHRASE}
