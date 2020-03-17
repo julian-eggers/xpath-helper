@@ -338,7 +338,7 @@
         <version>${exists-maven-plugin.version}</version>
         <configuration>
           <property>skip-deploy-to-central</property>
-          <repository>http://central.maven.org/maven2/</repository>
+          <repository>https://oss.sonatype.org/content/repositories/releases/</repository>
         </configuration>
         <executions>
           <execution>
