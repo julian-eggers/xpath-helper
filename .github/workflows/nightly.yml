@@ -31,4 +31,3 @@ jobs:
  
       - name: integration-tests
         run: mvn -DskipUTs -Dgpg.skip=true jacoco:restore-instrumented-classes verify
- 
