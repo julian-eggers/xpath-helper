@@ -1,16 +1,20 @@
 package com.itelg.xpath.helper;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
+import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Element;
+import nu.xom.ParsingException;
 
+@SuppressWarnings("deprecation")
 public class DocumentHelper
 {
     /**
@@ -21,7 +25,7 @@ public class DocumentHelper
 
     }
 
-    public static Element getRootElement(String xml) throws Exception
+    public static Element getRootElement(String xml) throws SAXException, IOException, ParsingException
     {
         try (InputStream inputStream = new ByteArrayInputStream(xml.getBytes()))
         {
@@ -29,7 +33,7 @@ public class DocumentHelper
         }
     }
 
-    public static Element getRootElement(InputStream inputStream) throws Exception
+    public static Element getRootElement(InputStream inputStream) throws SAXException, IOException, ParsingException
     {
         try (InputStream internal = inputStream)
         {
@@ -41,7 +45,7 @@ public class DocumentHelper
         }
     }
 
-    public static Element getRootElement(Reader reader) throws Exception
+    public static Element getRootElement(Reader reader) throws SAXException, IOException, ParsingException
     {
         try (Reader internal = reader)
         {

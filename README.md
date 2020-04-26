@@ -13,7 +13,7 @@ XPath helpers based on [XOM](http://www.xom.nu/ "XOM")
 <dependency>
 	<groupId>com.itelg</groupId>
 	<artifactId>xpath-helper</artifactId>
-	<version>0.5.3-RELEASE</version>
+	<version>0.6.0</version>
 </dependency>
 ```
 
