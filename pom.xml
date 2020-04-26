@@ -5,7 +5,7 @@
   <name>xpath-helper</name>
   <description>XPath helpers based on Xom</description>
   <url>https://github.com/julian-eggers/xpath-helper</url>
-  <version>0.6.0-RC1</version>
+  <version>0.6.0</version>
 
   <properties>
     <!-- System -->
