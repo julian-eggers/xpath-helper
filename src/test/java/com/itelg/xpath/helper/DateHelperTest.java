@@ -1,56 +1,61 @@
 package com.itelg.xpath.helper;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class DateHelperTest
+class DateHelperTest
 {
     /**
      * START java.time.*
      */
     @Test
-    public void testToZoneDateTime()
+    void testToZoneDateTime()
     {
-        Assert.assertEquals(ZonedDateTime.of(2015, 7, 8, 12, 21, 30, 0, ZoneId.of("+02:00")), DateHelper
+        assertEquals(ZonedDateTime.of(2015, 7, 8, 12, 21, 30, 0, ZoneId.of("+02:00")), DateHelper
                 .toZonedDateTime("2015-07-08T12:21:30.667+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                 .withNano(0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testToZoneDateTimeWithWrongFormat()
+    @Test
+    void testToZoneDateTimeWithWrongFormat()
     {
-        DateHelper.toZonedDateTime("2015-07-08T12:21:30.667+02:00", null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testToZoneDateTimeWithWrongDate()
-    {
-        DateHelper.toZonedDateTime("", DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        assertThrows(IllegalArgumentException.class,
+                () -> DateHelper.toZonedDateTime("2015-07-08T12:21:30.667+02:00", null));
     }
 
     @Test
-    public void testToLocalDateTime()
+    void testToZoneDateTimeWithWrongDate()
+    {
+        assertThrows(IllegalArgumentException.class,
+                () -> DateHelper.toZonedDateTime("", DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+    }
+
+    @Test
+    void testToLocalDateTime()
     {
         LocalDateTime localDateTime = DateHelper.toLocalDateTime("2015-07-08T12:21:30.667+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME).withNano(0);
         assertThat(localDateTime).isIn(LocalDateTime.of(2015, 7, 8, 10, 21, 30, 0), LocalDateTime.of(2015, 7, 8, 12, 21, 30, 0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testToLocalDateTimeWithWrongFormat()
+    @Test
+    void testToLocalDateTimeWithWrongFormat()
     {
-        DateHelper.toLocalDateTime("2015-07-08T12:21:30.667+02:00", null);
+        assertThrows(IllegalArgumentException.class,
+                () -> DateHelper.toLocalDateTime("2015-07-08T12:21:30.667+02:00", null));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testToLocalDateTimeWithWrongDate()
+    @Test
+    void testToLocalDateTimeWithWrongDate()
     {
-        DateHelper.toLocalDateTime("", DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        assertThrows(IllegalArgumentException.class,
+                () -> DateHelper.toLocalDateTime("", DateTimeFormatter.ISO_OFFSET_DATE_TIME));
     }
 }
