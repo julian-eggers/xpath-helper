@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.junit.jupiter.api.Test;
@@ -26,8 +27,7 @@ class AbstractParserTest
     @Test
     void testParseStringFileNotFound()
     {
-        TestParser parser = new TestParser();
-        assertThrows(Exception.class, () -> parser.parse(XmlLoader.loadXml("notfound.xml")));
+        assertThrows(Exception.class, () -> XmlLoader.loadXml("notfound.xml"));
     }
 
     @Test
@@ -46,10 +46,11 @@ class AbstractParserTest
     }
 
     @Test
-    void testParseInputStreamFileNotFound()
+    void testParseInputStreamFileNotFound() throws Exception
     {
         TestParser parser = new TestParser();
-        assertThrows(Exception.class, () -> parser.parse(XmlLoader.loadXmlStream("notfound.xml")));
+        InputStream inputStream = XmlLoader.loadXmlStream("notfound.xml");
+        assertThrows(Exception.class, () -> parser.parse(inputStream));
     }
 
     @Test
@@ -70,8 +71,7 @@ class AbstractParserTest
     @Test
     void testParseReaderFileNotFound()
     {
-        TestParser parser = new TestParser();
-        assertThrows(Exception.class, () -> parser.parse(new InputStreamReader(XmlLoader.loadXmlStream("notfound.xml"))));
+        assertThrows(Exception.class, () -> new InputStreamReader(XmlLoader.loadXmlStream("notfound.xml")));
     }
 
     @Test

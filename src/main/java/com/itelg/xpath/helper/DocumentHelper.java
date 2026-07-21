@@ -58,6 +58,8 @@ public class DocumentHelper
         {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+            factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
             return factory.newSAXParser().getXMLReader();
         }
         catch (ParserConfigurationException e)
