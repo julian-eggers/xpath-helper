@@ -14,7 +14,7 @@ XPath helpers based on [XOM](http://www.xom.nu/ "XOM")
 <dependency>
 	<groupId>com.itelg</groupId>
 	<artifactId>xpath-helper</artifactId>
-	<version>1.0.0-RC1</version>
+	<version>1.0.0-RC2</version>
 </dependency>
 ```
 
