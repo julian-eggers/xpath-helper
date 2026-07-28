@@ -3,7 +3,7 @@
 
   <groupId>com.itelg</groupId>
   <artifactId>xpath-helper</artifactId>
-  <version>1.0.0-RC2</version>
+  <version>1.0.0</version>
 
   <name>xpath-helper</name>
   <description>XPath helpers based on Xom</description>
