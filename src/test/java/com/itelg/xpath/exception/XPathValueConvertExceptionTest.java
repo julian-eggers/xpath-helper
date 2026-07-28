@@ -1,22 +1,22 @@
 package com.itelg.xpath.exception;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class XPathValueConvertExceptionTest
+class XPathValueConvertExceptionTest
 {
     @Test
-    public void testThrowableAndValue()
+    void testThrowableAndValue()
     {
         XPathValueConvertException exception = new XPathValueConvertException(new Exception("error"), "Test");
-        Assert.assertEquals("Test", exception.getValue());
-        Assert.assertEquals("error", exception.getCause().getMessage());
+        Assertions.assertEquals("Test", exception.getValue());
+        Assertions.assertEquals("error", exception.getCause().getMessage());
     }
 
     @Test
-    public void testValue()
+    void testValue()
     {
         XPathValueConvertException exception = new XPathValueConvertException("Test");
-        Assert.assertEquals("Test", exception.getValue());
+        Assertions.assertEquals("Test", exception.getValue());
     }
 }

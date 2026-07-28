@@ -1,10 +1,11 @@
 xpath-helper
 ============
 
-[![Maven Central](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/itelg/xpath-helper/maven-metadata.xml.svg)](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.itelg%22%20AND%20a%3A%22xpath-helper%22)
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/d69f266924be4b68ba7fb24cb3d49c15)](https://www.codacy.com/app/eggers-julian/xpath-helper)
-[![Coverage Status](https://coveralls.io/repos/julian-eggers/xpath-helper/badge.svg)](https://coveralls.io/r/julian-eggers/xpath-helper)
-[![Build Status](https://travis-ci.org/julian-eggers/xpath-helper.svg?branch=master)](https://travis-ci.org/julian-eggers/xpath-helper)
+[![Maven Central](https://img.shields.io/maven-central/v/com.itelg/xpath-helper.svg?label=maven-central)](https://search.maven.org/artifact/com.itelg/xpath-helper)
+[![Release](https://github.com/julian-eggers/xpath-helper/actions/workflows/release.yml/badge.svg)](https://github.com/julian-eggers/xpath-helper/actions/workflows/release.yml)
+[![Nightly build](https://github.com/julian-eggers/xpath-helper/actions/workflows/nightly.yml/badge.svg)](https://github.com/julian-eggers/xpath-helper/actions/workflows/nightly.yml)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=julian-eggers_xpath-helper&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=julian-eggers_xpath-helper)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=julian-eggers_xpath-helper&metric=coverage)](https://sonarcloud.io/summary/new_code?id=julian-eggers_xpath-helper)
 
 XPath helpers based on [XOM](http://www.xom.nu/ "XOM")
 
@@ -13,7 +14,7 @@ XPath helpers based on [XOM](http://www.xom.nu/ "XOM")
 <dependency>
 	<groupId>com.itelg</groupId>
 	<artifactId>xpath-helper</artifactId>
-	<version>0.6.0</version>
+	<version>1.0.0</version>
 </dependency>
 ```
 

@@ -1,82 +1,84 @@
 package com.itelg.xpath.helper.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.itelg.xpath.helper.XPathHelper;
 import com.itelg.xpath.helper.test.support.XmlLoader;
 
 import nu.xom.Element;
 
-public class AbstractParserTest
+class AbstractParserTest
 {
     @Test
-    public void testParseString() throws Exception
+    void testParseString() throws Exception
     {
         TestParser parser = new TestParser();
         TestObject object = parser.parse(XmlLoader.loadXml("valid.xml"));
-        Assert.assertEquals("TEST", object.getValue());
-    }
-
-    @Test(expected = Exception.class)
-    public void testParseStringFileNotFound() throws Exception
-    {
-        TestParser parser = new TestParser();
-        parser.parse(XmlLoader.loadXml("notfound.xml"));
-    }
-
-    @Test(expected = Exception.class)
-    public void testParseStringInvalidXml() throws Exception
-    {
-        TestParser parser = new TestParser();
-        parser.parse("<test/></test>");
+        assertEquals("TEST", object.getValue());
     }
 
     @Test
-    public void testParseInputStream() throws Exception
+    void testParseStringFileNotFound()
+    {
+        assertThrows(Exception.class, () -> XmlLoader.loadXml("notfound.xml"));
+    }
+
+    @Test
+    void testParseStringInvalidXml()
+    {
+        TestParser parser = new TestParser();
+        assertThrows(Exception.class, () -> parser.parse("<test/></test>"));
+    }
+
+    @Test
+    void testParseInputStream() throws Exception
     {
         TestParser parser = new TestParser();
         TestObject object = parser.parse(XmlLoader.loadXmlStream("valid.xml"));
-        Assert.assertEquals("TEST", object.getValue());
-    }
-
-    @Test(expected = Exception.class)
-    public void testParseInputStreamFileNotFound() throws Exception
-    {
-        TestParser parser = new TestParser();
-        parser.parse(XmlLoader.loadXmlStream("notfound.xml"));
-    }
-
-    @Test(expected = Exception.class)
-    public void testParseInputStreamInvalidXml() throws Exception
-    {
-        TestParser parser = new TestParser();
-        parser.parse(new ByteArrayInputStream("<test/></test>".getBytes()));
+        assertEquals("TEST", object.getValue());
     }
 
     @Test
-    public void testParseReader() throws Exception
+    void testParseInputStreamFileNotFound() throws Exception
+    {
+        TestParser parser = new TestParser();
+        InputStream inputStream = XmlLoader.loadXmlStream("notfound.xml");
+        assertThrows(Exception.class, () -> parser.parse(inputStream));
+    }
+
+    @Test
+    void testParseInputStreamInvalidXml()
+    {
+        TestParser parser = new TestParser();
+        assertThrows(Exception.class, () -> parser.parse(new ByteArrayInputStream("<test/></test>".getBytes())));
+    }
+
+    @Test
+    void testParseReader() throws Exception
     {
         TestParser parser = new TestParser();
         TestObject object = parser.parse(new InputStreamReader(XmlLoader.loadXmlStream("valid.xml")));
-        Assert.assertEquals("TEST", object.getValue());
+        assertEquals("TEST", object.getValue());
     }
 
-    @Test(expected = Exception.class)
-    public void testParseReaderFileNotFound() throws Exception
+    @Test
+    void testParseReaderFileNotFound()
     {
-        TestParser parser = new TestParser();
-        parser.parse(new InputStreamReader(XmlLoader.loadXmlStream("notfound.xml")));
+        assertThrows(Exception.class, () -> new InputStreamReader(XmlLoader.loadXmlStream("notfound.xml")));
     }
 
-    @Test(expected = Exception.class)
-    public void testParseReaderInvalidXml() throws Exception
+    @Test
+    void testParseReaderInvalidXml()
     {
         TestParser parser = new TestParser();
-        parser.parse(new InputStreamReader(new ByteArrayInputStream("<test/></test>".getBytes())));
+        assertThrows(Exception.class, () -> parser.parse(new InputStreamReader(new ByteArrayInputStream("<test/></test>".getBytes()))));
     }
 
     private static class TestParser extends AbstractParser<TestObject>
